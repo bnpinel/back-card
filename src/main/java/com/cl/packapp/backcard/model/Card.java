@@ -1,18 +1,10 @@
 
 package com.cl.packapp.backcard.model;
 
-import org.springframework.beans.support.MutableSortDefinition;
-import org.springframework.beans.support.PropertyComparator;
-import org.springframework.data.annotation.Id;
-import org.springframework.format.annotation.DateTimeFormat;
-
-
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import org.springframework.data.annotation.Id;
 
 /**
  * Simple business object representing a card.
@@ -25,7 +17,7 @@ public class Card  {
 	@Id
     private String id;
 	private LocalDate expiryDate;
-    private int cardType;
+    private String cardTypeID;
     private String customerID;
     private List<String> paymentIDList;
     
@@ -33,10 +25,10 @@ public class Card  {
     	
     }
     
-    public Card(String id, LocalDate expiryDate, int cardType, String customerID) {
+    public Card(String id, LocalDate expiryDate, String cardTypeID, String customerID) {
     	this.id = id;
     	this.expiryDate = expiryDate;
-    	this.cardType = cardType;
+    	this.cardTypeID = cardTypeID;
     	this.customerID = customerID;
     }
     
@@ -52,12 +44,6 @@ public class Card  {
 	public void setExpiryDate(LocalDate expiryDate) {
 		this.expiryDate = expiryDate;
 	}
-	public int getCardType() {
-		return cardType;
-	}
-	public void setCardType(int cardType) {
-		this.cardType = cardType;
-	}
 	public String getCustomerID() {
 		return customerID;
 	}
@@ -69,6 +55,12 @@ public class Card  {
 	}
 	public void setPaymentIDList(List<String> paymentIDList) {
 		this.paymentIDList = paymentIDList;
+	}
+	public String getCardTypeID() {
+		return cardTypeID;
+	}
+	public void setCardTypeID(String cardTypeID) {
+		this.cardTypeID = cardTypeID;
 	}
 
 

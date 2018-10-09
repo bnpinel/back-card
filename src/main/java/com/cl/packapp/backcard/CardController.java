@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -45,7 +44,7 @@ public class CardController {
 		System.out.println("---- Card " + card.getId() + " added");
 		
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/card{id}").buildAndExpand(card.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/card/{id}").buildAndExpand(card.getId()).toUri());
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	}
 	
