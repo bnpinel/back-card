@@ -1,5 +1,6 @@
 package com.cl.packapp.backcard;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,14 @@ public class CardController {
 	
 	
 	@RequestMapping(value="/card/{id}", method=RequestMethod.GET)
-	public Optional<Card> viewCard(@PathVariable("id") String id) {
+	public Optional<Card> viewCardById(@PathVariable("id") String id) {
 		return repository.findById(id);
+	}
+	
+	@RequestMapping(value="/card/customer/{customerID}", method=RequestMethod.GET)
+	public List<Card> viewCardByCustomerID(@PathVariable("customerID") String customerID) {
+		
+		return repository.findByCustomerID(customerID);
 	}
 	
 	
