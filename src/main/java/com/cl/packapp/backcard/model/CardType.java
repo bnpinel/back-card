@@ -11,7 +11,7 @@ public class CardType{
 	
 	@Id
     private String id;
-	private String label;
+	private String name;
 	
     public CardType() {
     	
@@ -19,7 +19,7 @@ public class CardType{
     
     public CardType(String id, String label) {
     	this.id = id;
-    	this.label = label;
+    	this.name = label;
     }
 
 	public String getId() {
@@ -30,12 +30,12 @@ public class CardType{
 		this.id = id;
 	}
 
-	public String getLabel() {
-		return label;
+	public String getName() {
+		return name;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setName(String name) {
+		this.name = name;
 	}
     
     
