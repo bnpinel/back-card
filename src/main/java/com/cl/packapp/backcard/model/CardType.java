@@ -1,5 +1,5 @@
 
-package com.cl.model;
+package com.cl.packapp.backcard.model;
 
 /**
  * @author fhippolyte

@@ -1,4 +1,4 @@
-package com.cl;
+package com.cl.packapp.backcard;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,8 +1,8 @@
-package com.cl;
+package com.cl.packapp.backcard;
 
-import java.time.LocalDate;
-import java.time.Month;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,32 +14,39 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.cl.model.Card;
-import com.cl.model.CardType;
+import com.cl.packapp.backcard.dao.CardRepository;
+import com.cl.packapp.backcard.model.Card;
 
 @RestController
 public class CardController {
 	
-	@RequestMapping(value="/card", method=RequestMethod.GET)
-	public Card viewCard(@RequestParam(value="id", defaultValue="toto") String id) {
-		
-		return new Card("1", LocalDate.of(2014, Month.FEBRUARY, 2), CardType.VISA, "01");
+	@Autowired
+	private CardRepository repository;
+	
+	
+	@RequestMapping(value="/card/{id}", method=RequestMethod.GET)
+	public Optional<Card> viewCard(@PathVariable("id") String id) {
+		return repository.findById(id);
 	}
 	
 	
 	@RequestMapping(value="/card", method=RequestMethod.POST)
 	public ResponseEntity<?> editCard(@RequestBody Card card, UriComponentsBuilder ucBuilder) {
 		
+		card = repository.save(card);
+		
 		System.out.println("---- Card " + card.getId() + " added");
 		
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/api/user/{id}").buildAndExpand(card.getId()).toUri());
+        headers.setLocation(ucBuilder.path("/card{id}").buildAndExpand(card.getId()).toUri());
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
 	}
 	
 	
 	@RequestMapping(value="/card/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<?> editCard(@PathVariable("id") long id, @RequestBody Card card, UriComponentsBuilder ucBuilder) {
+	public ResponseEntity<?> editCard(@PathVariable("id") String id, @RequestBody Card card, UriComponentsBuilder ucBuilder) {
+		
+		card = repository.save(card);
 		
 		System.out.println("---- Card " + card.getId() + " edited");
 		

@@ -1,8 +1,9 @@
 
-package com.cl.model;
+package com.cl.packapp.backcard.model;
 
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
+import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -21,11 +22,16 @@ import java.util.Set;
 public class Card  {
 
 
+	@Id
     private String id;
 	private LocalDate expiryDate;
     private int cardType;
     private String customerID;
     private List<String> paymentIDList;
+    
+    public Card() {
+    	
+    }
     
     public Card(String id, LocalDate expiryDate, int cardType, String customerID) {
     	this.id = id;
