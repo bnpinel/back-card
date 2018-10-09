@@ -25,8 +25,17 @@ public class CardController {
 	
 	
 	@RequestMapping(value="/card/{id}", method=RequestMethod.GET)
-	public Optional<Card> viewCardById(@PathVariable("id") String id) {
-		return repository.findById(id);
+	public ResponseEntity viewCardById(@PathVariable("id") String id) {
+		
+		Optional<Card> card = repository.findById(id);
+		
+		if (card==null || !card.isPresent()	) {
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<Card>(card.get(), HttpStatus.OK);
+		}
+		
+		
 	}
 	
 	@RequestMapping(value="/card/customer/{customerID}", method=RequestMethod.GET)
