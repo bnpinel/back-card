@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back-card-deployment
+  namespace: packapp04
+spec:
+  selector:
+    matchLabels:
+      app: back-card
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: back-card
+    spec:
+      containers:
+      - name: back-card
+        image: registry.hackathon-container.com/packapp04/back-card:1.0
+        ports:
+        - containerPort: 9093
+      - name: mongodb
+        image: mongo:3.6.8
+        ports:
+        - name: mongo
+          containerPort: 27017
+      imagePullSecrets:
+      - name: registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-card-svc
+  namespace: packapp04
+spec:
+  type: ClusterIP
+  selector:
+    app: back-customer
+  ports:
+  - name: back-card-ports 
+    port: 9093
+    targetPort: 9093
+    protocol: TCP
