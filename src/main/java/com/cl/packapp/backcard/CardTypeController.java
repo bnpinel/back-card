@@ -25,8 +25,15 @@ public class CardTypeController {
 	
 	
 	@RequestMapping(value="/cardtype/{id}", method=RequestMethod.GET)
-	public Optional<CardType> getCardTypeById(@PathVariable("id") String id) {
-		return repository.findById(id);
+	public ResponseEntity getCardTypeById(@PathVariable("id") String id) {
+		
+		Optional<CardType> cardtype = repository.findById(id);
+		
+		if (cardtype==null || !cardtype.isPresent()	) {
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<CardType>(cardtype.get(), HttpStatus.OK);
+		}
 	}
 	
 	@RequestMapping(value="/cardtype", method=RequestMethod.GET)
