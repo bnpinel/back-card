@@ -16,6 +16,7 @@ public class Card  {
 
 	@Id
     private String id;
+	private String name;
 	private String birthDate;
     private String cardTypeID;
     private String customerID;
@@ -25,8 +26,9 @@ public class Card  {
     	
     }
     
-    public Card(String id, String birthDate, String cardTypeID, String customerID) {
+    public Card(String id, String name, String birthDate, String cardTypeID, String customerID) {
     	this.id = id;
+    	this.name = name;
     	this.birthDate = birthDate;
     	this.cardTypeID = cardTypeID;
     	this.customerID = customerID;
@@ -61,6 +63,12 @@ public class Card  {
 	}
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
