@@ -67,5 +67,23 @@ public class CardController {
 		
         return new ResponseEntity<Card>(card, HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(value="/card/{idcard}/payment/{idpayment}", method=RequestMethod.PUT)
+	public ResponseEntity<?> addPaymentOnCard(@PathVariable("idcard") String idcard, @PathVariable("idpayment") String idpayment,  UriComponentsBuilder ucBuilder) {
+		
+		Optional<Card> card = repository.findById(idcard);
+		
+		if (card==null || !card.isPresent()	) {
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		} else {
+			
+			List<String> listPayment = card.get().getPaymentIDList();
+			listPayment.add(idpayment);
+			repository.save(card.get());
+			
+			System.out.println("---- Payment added on " + card.get().getId());
+			
+			return new ResponseEntity<Card>(card.get(), HttpStatus.OK);
+		}
+	}
 }

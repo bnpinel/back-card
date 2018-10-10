@@ -16,7 +16,7 @@ public class Card  {
 
 	@Id
     private String id;
-	private LocalDate expiryDate;
+	private String birthDate;
     private String cardTypeID;
     private String customerID;
     private List<String> paymentIDList;
@@ -25,9 +25,9 @@ public class Card  {
     	
     }
     
-    public Card(String id, LocalDate expiryDate, String cardTypeID, String customerID) {
+    public Card(String id, String birthDate, String cardTypeID, String customerID) {
     	this.id = id;
-    	this.expiryDate = expiryDate;
+    	this.birthDate = birthDate;
     	this.cardTypeID = cardTypeID;
     	this.customerID = customerID;
     }
@@ -37,12 +37,6 @@ public class Card  {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public LocalDate getExpiryDate() {
-		return expiryDate;
-	}
-	public void setExpiryDate(LocalDate expiryDate) {
-		this.expiryDate = expiryDate;
 	}
 	public String getCustomerID() {
 		return customerID;
@@ -62,8 +56,11 @@ public class Card  {
 	public void setCardTypeID(String cardTypeID) {
 		this.cardTypeID = cardTypeID;
 	}
-
-
-
+	public String getBirthDate() {
+		return birthDate;
+	}
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
 
 }
