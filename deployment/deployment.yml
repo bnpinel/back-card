@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: back-card
-        image: registry.hackathon-container.com/packapp04/back-card:2.1
+        image: registry.hackathon-container.com/packapp04/back-card:2.3
         ports:
         - containerPort: 9093
       imagePullSecrets:
