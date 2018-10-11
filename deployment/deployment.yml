@@ -29,7 +29,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: back-customer
+    app: back-card
   ports:
   - name: back-card-ports 
     port: 9093
